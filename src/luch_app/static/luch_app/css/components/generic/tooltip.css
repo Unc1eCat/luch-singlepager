@@ -1,0 +1,41 @@
+.tooltip-container {
+    position: relative;
+}
+
+.tooltip-triangle {
+    position: absolute;
+    display: block;
+    z-index: -1;
+    margin-inline: auto;
+    inset-inline: 0;
+    top: -18px;
+    width: 20px;
+    height: 20px;
+    fill: var(--surface-sat);
+    stroke-opacity: 0;
+    /* background-color: red; */
+}
+
+.tooltip {
+    position: absolute;
+    display: block;
+    z-index: 2;
+    top: 100%;
+    left: 50%;
+    margin-top: 10px;
+    transform: translateX(-50%);
+    max-width: 30rem;
+    width: max-content;
+    background-color: var(--surface-sat);
+    box-shadow: 8px 3px 6px 0 var(--surface-sat-shadow);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.tooltip-display {
+    display: none;
+}
+
+.tooltip-hide {
+    display: none;
+}

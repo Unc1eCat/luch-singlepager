@@ -1,0 +1,37 @@
+.wave {
+    line-height: 0;
+    display: block;
+    width: 100%;
+    margin-block: -2px;
+    /* Prevents from gaps of space between the wave and other elements */
+}
+
+.waves-group {
+    position: relative;
+}
+
+.waves-group>svg {
+    position: absolute;
+    bottom: 0;
+    inset-inline: 0;
+}
+
+/* TODO: Finish the below */
+.top-wave-container {
+    position: relative;
+    isolation: isolate;
+}
+
+.top-wave-container>.wave {
+    z-index: -1;
+    position: absolute;
+}
+
+.top-wave-container>.wave+div {
+    background-color: var(--top-wave-bg-color);
+    height: auto;
+}
+
+.top-wave-child {
+    /* margin-top: 70px; */
+}

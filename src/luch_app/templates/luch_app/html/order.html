@@ -1,0 +1,143 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&family=Comforter&family=Montserrat+Alternates:wght@200&family=Nunito&family=Source+Sans+Pro:wght@700&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/static/luch_app/css/pages/order.css">
+
+    <script defer src="/static/luch_app/js/main.js"></script>
+
+    <title>Заказ {{ order.pk }} – ЛУЧ</title>
+    <meta name="description" content="Lorem">
+    <meta name="keywords" content="Lorem">
+    <link rel="icon" href="/static/luch_app/img/logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <header class="header-height">
+        <a class="tooltip-container" id="logo" href="/" title="Вернуться на главную страницу">
+            <img src="/static/luch_app/img/logo.png">
+            <h1>ЛУЧ</h1>
+        </a>
+    </header>
+    <main>
+        <h1>
+            Информация о заказах на antnbsp25@gmail.com
+        </h1>
+        <section class="card fly-in-from-left">
+            <div class="order-meta fly-in-from-left">
+                <h2 class="scaling-button drag-solid" onclick="navigator.clipboard.writeText('53d4ef18hh03')"
+                    title="Номер заказа">
+                    {{ order.pk }}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path
+                            d="M64 464H288c8.8 0 16-7.2 16-16V384h48v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h64v48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16zM224 304H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H224c-8.8 0-16 7.2-16 16V288c0 8.8 7.2 16 16 16zm-64-16V64c0-35.3 28.7-64 64-64H448c35.3 0 64 28.7 64 64V288c0 35.3-28.7 64-64 64H224c-35.3 0-64-28.7-64-64z" />
+                    </svg>
+                </h2>
+                <b title="Дата совершения заказа">26 Февраля 2023</b>
+                <ul>
+                    <li title="Электронная почта, через которую был совершён заказ">{{ order.email }}</li>
+                    <li title="Человек, на которого был совершён заказ">{{ order.last_name }} {{ order.first_name }}</li>
+                    <li title="Адрес доставки">{{ order.address }}</li>
+                </ul>
+                <div class="order-fulfillment-status" title="{{ order.status.label }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        viewBox="0 0 7 40" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+                        <path
+                            d="M2.5,40v-16.64494C1.05426,22.92479,0,21.58551,0,20s1.05426-2.92479,2.5-3.35506L2.5,0h2v16.64494C5.94574,17.07521,7,18.41449,7,20s-1.05426,2.92479-2.5,3.35506L4.5,40h-2Z"
+                            stroke-width="0" />
+                    </svg>
+                    ЖДЁТ ОТПРАВКУ
+                </div>
+            </div>
+            <div class="order-items">
+                <table>
+                    <thead>
+                        <th>
+                            <div>Наименование</div>
+                        </th>
+                        <th>
+                            <div>Количество</div>
+                        </th>
+                        <th>
+                            <div>Стоимость</div>
+                        </th>
+                    </thead>
+                    <tr>
+                        <td>
+                            Картофель "Новатор"
+                        </td>
+                        <td>
+                            41 кг
+                        </td>
+                        <td>
+                            23515 руб.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Картофель "Рэд Скарлет"
+                        </td>
+                        <td>
+                            22 кг
+                        </td>
+                        <td>
+                            11300 руб.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Лук "Полевой Белый"
+                        </td>
+                        <td>
+                            9,5 кг
+                        </td>
+                        <td>
+                            12330 руб.
+                        </td>
+                    </tr>
+                    <tr class="order-total">
+                        <td colspan="2">
+                        </td>
+                        <td>
+                            <div>
+                                <b>Итого:</b><br> 572351215235 руб.
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-bottom-info">2023 | Вологодская область</div>
+        <h1>ООО "ЛУЧ"</h1>
+        <h3>Овощи — это
+            <div class="potato-words">
+                <span>счастье</span>
+                <span>добро</span>
+                <span>любовь</span>
+                <span>жизнь</span>
+                <span>радость</span>
+                <span>эмоции</span>
+                <span>наслаждение</span>
+            </div>
+            <br>
+            Неповторимый и везде подходящий, понятный вкус. Мы делаем всё ради наших овозей, чтобы доставлять
+            вам
+            их и удовольствие.
+        </h3>
+        <div class="footer-tint"></div>
+    </footer>
+</body>
+
+</html>

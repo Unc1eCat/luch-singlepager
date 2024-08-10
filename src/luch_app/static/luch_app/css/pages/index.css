@@ -1,0 +1,504 @@
+@import "../conf.css";
+@import "../common.css";
+
+#background {
+    height: 100%;
+    inset: 0;
+    z-index: -2;
+    position: fixed;
+}
+
+#background>img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+#background::after {
+    position: absolute;
+    content: "";
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    background-image: linear-gradient(to top, #000000ed, rgba(16, 16, 16, 0.603) 40%, rgba(28, 28, 28, 0.06));
+}
+
+#front-banner {
+    margin: 30px 10px;
+    position: relative;
+}
+
+#front-banner>button {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    width: 70px;
+    height: 70px;
+}
+
+#front-banner>button>svg {
+    fill: white;
+}
+
+@media (max-width: 700px) or (hover:none) {
+    #front-banner>button {
+        display: none;
+    }
+}
+
+#front-banner>button.prev {
+    left: 0;
+}
+
+#front-banner>button.next {
+    right: 0;
+}
+
+#front-banner>.snap-gallery {
+    z-index: -1;
+    width: 100%;
+}
+
+#front-banner .snap-gallery>img {
+    z-index: 2;
+    width: 97%;
+    aspect-ratio: 1.618;
+    max-height: 70vh;
+    object-fit: cover;
+    margin-inline: 3px;
+    border-radius: 6px;
+}
+
+.front-text {
+    z-index: 3;
+    position: absolute;
+    display: flex;
+    inset: 0;
+    margin: 0 auto;
+    padding-inline: 20px;
+    max-width: 500px;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    text-shadow: 3px 4px 5px rgba(75, 87, 75, 0.524);
+    pointer-events: none;
+    transition-property: transform, opacity;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.front-text>div {
+    z-index: 5;
+}
+
+.front-text>div:nth-child(1) {
+    font-family: "Alegreya Sans SC", sans-serif;
+    max-width: 400px;
+    font-size: 72px;
+
+}
+
+.front-text>div:nth-child(2) {
+    font-family: "Comforter", serif;
+    font-size: 82px;
+    text-align: end;
+    margin-top: 10px;
+}
+
+@media (max-width: 1000px) {
+    #front-banner {
+        margin: 10px 0 0 0;
+    }
+
+    #front-banner .snap-gallery {
+        padding: 0;
+        --fade-width: 0;
+        -webkit-mask-image: none;
+    }
+
+    #front-banner .snap-gallery>img {
+        margin-inline: -3px;
+        aspect-ratio: 0.786;
+        border-radius: 0;
+        max-height: 50vh;
+    }
+
+    .front-text {
+        max-width: 400px;
+    }
+
+    .front-text>div:nth-child(1) {
+        font-size: 54px;
+
+    }
+
+    .front-text>div:nth-child(2) {
+        font-size: 62px;
+    }
+}
+
+#contact-us .wave,
+#official-documents .wave {
+    fill: var(--slight-background);
+}
+
+#contact-us>.vw-bar {
+    padding-top: 1px;
+    /* IDK if have padding 0 there is a gap between contact-us and the wave above it */
+}
+
+.avoid-order-sheet {
+    padding-right: var(--order-sheet-margin);
+}
+
+.order-sheet-container {
+    position: relative;
+}
+
+.order-sheet-sticking-area {
+    perspective: 3000px;
+    position: absolute;
+    width: var(--order-sheet-margin);
+    padding-right: 90px;
+    padding-left: 20px;
+    right: 0;
+    top: -80px;
+    height: 100%;
+}
+
+#order-sheet {
+    position: sticky;
+    display: flow-root;
+    z-index: 1;
+    top: calc(30px + var(--header-height));
+    transform: translateX(calc(30px * var(--pmt-exp-percentage-x) * cos(var(--pmt-angle)))) translateY(calc(30px * var(--pmt-exp-percentage-y) * sin(var(--pmt-angle)))) rotateY(calc(40deg * var(--pmt-exp-percentage-x) * cos(var(--pmt-angle)))) rotateX(calc(-40deg * var(--pmt-exp-percentage-y) * sin(var(--pmt-angle))));
+    box-shadow: calc(-50px * var(--pmt-exp-percentage-x) * cos(var(--pmt-angle))) calc(-80px * var(--pmt-exp-percentage-y) * sin(var(--pmt-angle))) calc((var(--pmt-exp-percentage-x) + var(--pmt-exp-percentage-y)) * 20px + 10px) calc((var(--pmt-exp-percentage-x) + var(--pmt-exp-percentage-y)) * -10px) #2228, 0 1px 5px 1px #2222;
+    transition-property: transform, box-shadow;
+    transition-duration: var(--pmt-transition-duration);
+}
+
+@media screen and (max-width: 1000px) {
+    .order-sheet-sticking-area {
+        position: static;
+        padding: 0 100px;
+        margin-inline: auto;
+        width: auto;
+    }
+
+    #order-sheet {
+        position: static;
+    }
+
+    .avoid-order-sheet {
+        padding-right: 0;
+    }
+
+    .order-sheet-container {
+        top: -30px
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .order-sheet-sticking-area {
+        padding-inline: 30px;
+        top: 0;
+    }
+}
+
+.order-now-title {
+    font-family: "Alegreya Sans SC", sans-serif;
+    font-size: 28px;
+    text-align: center;
+    line-height: 80px;
+    vertical-align: top;
+    border-radius: 12px 12px 0 0;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.order-now-title+.wave {
+    fill: var(--primary-color);
+}
+
+#order-sheet form {
+    margin: 20px 30px 10px;
+}
+
+#order-sheet form>p {
+    margin-block: 25px;
+}
+
+#order-sheet input[type="submit"] {
+    max-width: 20rem;
+    margin-inline: auto;
+}
+
+#general-info>div {
+    max-width: 30rem;
+}
+
+#general-info .card {
+    padding: 20px;
+}
+
+#general-info h2 {
+    margin-right: 30%;
+}
+
+#contact-us .vw-bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#contact-us .vw-bar h2 {
+    flex: 1 1 100%;
+    text-align: center;
+}
+
+#contact-us .vw-bar p {
+    flex: 0 1 auto;
+    margin-inline: 20px;
+}
+
+#contact-us-map-wrapper {
+    flex: 0 1 30rem;
+    aspect-ratio: 1.61;
+    margin: 10px 30px 20px;
+}
+
+#contact-us-map-wrapper>p {
+    display: none;
+    text-align: center;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    color: inherit;
+    transition: opacity 200ms, transform 200ms, color 200ms;
+}
+
+#contact-us-map {
+    height: 100%;
+    box-shadow: 2px 1px 8px 2px #3334;
+    transition: box-shadow 300ms 150ms;
+}
+
+.contact-us-map-wrapper-active>#contact-us-map {
+    pointer-events: all;
+}
+
+@media (hover: none) {
+    #contact-us-map-wrapper>p {
+        display: block;
+    }
+
+    #contact-us-map {
+        pointer-events: none;
+    }
+
+    #contact-us-map-wrapper.contact-us-map-wrapper-active>#contact-us-map {
+        box-shadow: 1px 1px 18px 5px var(--primary-color-20);
+    }
+
+    #contact-us-map-wrapper.contact-us-map-wrapper-active>p {
+        opacity: 0;
+        color: var(--primary-color);
+        transform: translateY(-80%) scale(0.7);
+    }
+}
+
+#official-documents>.vw-bar {
+    margin-bottom: 80px;
+}
+
+#official-documents ul {
+    list-style: none;
+    padding: 0;
+}
+
+#official-documents a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    list-style-type: none;
+    margin-block: 5px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    transform: scale(1);
+    transition: background-color 400ms, transform 300ms;
+}
+
+#official-documents a:hover {
+    transform: scale(1.05);
+    background-color: var(--primary-color-30);
+}
+
+#official-documents a svg {
+    flex: 0 0 16px;
+}
+
+#check-order-status-popup {
+    padding: 10px;
+}
+
+#check-order-status-popup form input[type="submit"] {
+    max-width: 400px;
+    margin-inline: auto;
+    margin-top: 60px;
+}
+
+#check-order-status-popup form section {
+    max-width: 40rem;
+    margin-inline: auto;
+}
+
+#check-order-status-popup form h2 {
+    font-size: 18px;
+    text-align: center;
+}
+
+#check-order-status-divider {
+    margin: 20px 10px;
+    text-align: center;
+    color: gray;
+    white-space: nowrap;
+}
+
+#check-order-status-divider::before,
+#check-order-status-divider::after {
+    content: "";
+    display: inline-block;
+    background-color: gray;
+    height: 1px;
+    width: calc(50% - 40px);
+    max-width: 400px;
+    vertical-align: middle;
+    margin-inline: 10px;
+}
+
+#vegetables-showcase {
+    box-sizing: content-box;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 15px;
+    margin: 30px 35px;
+    max-width: 1000px;
+}
+
+.vegetables-item {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    max-width: 400px;
+}
+
+.vegetables-item img {
+    flex: 1.618 0 0;
+    display: block;
+    height: 200px;
+    margin-inline: auto;
+    object-fit: contain;
+}
+
+.vegetables-description {
+    flex: 1 0 0;
+    display: flow-root;
+    padding: 0 8px 0 20px;
+    border-radius: 0 0 14px 14px;
+}
+
+.vegetables-price>b {
+    font-size: 22px;
+    font-family: "Alegreya Sans SC", sans-serif;
+}
+
+.vegetables-item>.waves-group>:first-child {
+    z-index: -2;
+    transition: transform 600ms 400ms;
+}
+
+.vegetables-item:hover>.waves-group>:first-child {
+    transition: transform 500ms 0ms;
+}
+
+.vegetables-item>.waves-group {
+    flex: 0 0 0;
+    margin-top: 50px;
+}
+
+.vegetables-item>.waves-group>:last-child {
+    transform-origin: bottom center;
+    transform: scaleY(0.03);
+    transition: transform 700ms 300ms;
+}
+
+.vegetables-item.fly-in-from-left-on>.waves-group>:last-child,
+.vegetables-item.fly-in-from-right-on>.waves-group>:last-child {
+    transform: scaleY(1);
+}
+
+.vegetables-item:hover>.waves-group>:last-child {
+    transform: scaleY(0.9);
+    transition: transform 500ms 0ms;
+}
+
+#vegetables-item-onion>.waves-group>:first-child {
+    transform-origin: bottom left;
+    transform: scaleX(0) scaleY(1);
+    transition: transform 600ms 400ms;
+}
+
+#vegetables-item-onion.fly-in-from-left-on>.waves-group>:first-child,
+#vegetables-item-onion.fly-in-from-right-on>.waves-group>:first-child {
+    transform: scaleX(1);
+}
+
+#vegetables-item-onion:hover>.waves-group>:first-child {
+    transform: scaleY(1.2);
+    transition: transform 500ms 0ms;
+}
+
+#vegetables-item-beetroot>.waves-group>:first-child {
+    transform-origin: bottom right;
+    transform: scaleX(0) scaleY(1);
+}
+
+#vegetables-item-beetroot.fly-in-from-left-on>.waves-group>:first-child,
+#vegetables-item-beetroot.fly-in-from-right-on>.waves-group>:first-child {
+    transform: scaleX(1);
+}
+
+#vegetables-item-beetroot:hover>.waves-group>:first-child {
+    transform: scaleY(0.9);
+}
+
+#vegetables-item-potato>.waves-group>:first-child {
+    transform-origin: bottom right;
+    transform: scaleX(0) scaleY(1);
+}
+
+#vegetables-item-potato.fly-in-from-left-on>.waves-group>:first-child,
+#vegetables-item-potato.fly-in-from-right-on>.waves-group>:first-child {
+    transform: scaleX(1);
+}
+
+#vegetables-item-potato:hover>.waves-group>:first-child {
+    transform: scaleY(1.3);
+}
+
+#vegetables-item-onion .vegetables-description {
+    background-color: #ef8358;
+}
+
+#vegetables-item-beetroot .vegetables-description {
+    background-color: #d772f3;
+}
+
+#vegetables-item-potato .vegetables-description {
+    background-color: #ecb755;
+}

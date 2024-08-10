@@ -1,0 +1,75 @@
+.modal-popup {
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    position: fixed;
+    inset: 0;
+    height: 100dvh;
+    
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    background-color: var(--modal-barrier-color);
+    backdrop-filter: grayscale(0.9) blur(5px);
+
+    transform-style: preserve-3d;
+    perspective: 500px;
+
+
+    transition: background-color 900ms ease-in, backdrop-filter 500ms;
+}
+
+.modal-popup-hide {
+    visibility: none;
+    display: none;
+    background-color: transparent;
+    backdrop-filter: grayscale(0) blur(0);
+    background-size: 0 0;
+    transition: background-color 1000ms ease-in-out, backdrop-filter 500ms 500ms;
+}
+
+.modal-popup-display {
+    display: flex;
+}
+
+.modal-popup::before {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at center, transparent 0, transparent 20%, rgba(255, 255, 255, 0.505) 35%, transparent 50%, transparent 100%);
+    background-size: calc(max(100vw, 100vh) * 2.5) calc(max(100vw, 100vh) * 2.5);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    opacity: 1;
+    transition: opacity 200ms linear 100ms, background-size 1100ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.modal-popup-hide::before {
+    opacity: 0;
+    background-image: radial-gradient(circle at center, transparent 0, transparent 20%, rgba(255, 255, 255, 0.505) 35%, transparent 50%, transparent 100%);
+    background-size: 40% 40%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    transition: opacity 400ms linear 300ms, background-size 700ms ease-in;
+}
+
+.modal-popup>.popup-card {
+    padding: 30px 20px;
+    max-width: max(50%, 500px);
+    width: 100%;
+    margin: auto;
+}
+
+.modal-popup>* {
+    display: block;
+    transform: scale(1) rotateZ(0) rotateX(0);
+    opacity: 1;
+    transition: transform 600ms, opacity 600ms;
+}
+
+.modal-popup-hide>* {
+    transform: scale(0.8) rotateZ(20deg) rotateX(10deg);
+    opacity: 0;
+    transition: transform 600ms ease-in 200ms, opacity 600ms 200ms;
+}

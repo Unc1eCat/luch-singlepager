@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&family=Comforter&family=Montserrat+Alternates:wght@200&family=Nunito&family=Source+Sans+Pro:wght@700&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/static/luch_app/css/pages/index.css">
+
+    <script defer src="/static/luch_app/js/main.js"></script>
+    <script
+        src="https://api-maps.yandex.ru/2.0-stable/?apikey=a6d5c514-080e-4bcb-925c-bb2f90fbd297&load=package.standard&lang=ru-RU"></script>
+
+
+    <title>ЛУЧ</title>
+    <meta name="description" content="Lorem">
+    <meta name="keywords" content="Lorem">
+    <link rel="icon" href="/static/luch_app/img/logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Section focus debug line -->
+    <!-- <div style=" 
+        background-color: red;
+        height: 2px;
+        position: fixed;
+        width: 100%;
+        top: 25vh;
+        z-index: 20000;
+    "></div> -->
+    <div id="background">
+        <img src="/static/luch_app/img/homepage_banner_0.jpg">
+    </div>
+    <header class="header-height drag-solid">
+        <a id="logo" href="#">
+            <img src="/static/luch_app/img/logo.png">
+            <h1>ЛУЧ</h1>
+        </a>
+        <div id="order-status-button">
+            <button class="color-fill-button scaling-button"
+                onclick="mainNs.showModalPopup(document.getElementById('check-order-status-popup'))">ПРОВЕРИТЬ СТАТУС
+                ЗАКАЗА</button>
+        </div>
+        <ul class="snap-gallery" id="sections-nav">
+            <li>
+                <a class="tinting-button" href="#general-info">О НАС</a>
+            </li>
+            <li>
+                <a class="tinting-button" href="#contact-us">КОНТАКТЫ</a>
+            </li>
+            <li>
+                <a class="tinting-button" href="#vegetables-showcase">ОВОЩИ</a>
+            </li>
+            <li>
+                <a class="tinting-button" href="#official-documents">ДОКУМНЕТЫ</a>
+            </li>
+        </ul>
+    </header>
+    <main>
+        <section id="front-banner">
+            <div class="front-text">
+                <div class="fly-in-from-left">Мы делаем овощи</div>
+                <div class="fly-in-from-right">для Вас.</div>
+            </div>
+            <div class="snap-gallery">
+                <img src="/static/luch_app/img/gallery_item_0.jpg">
+                <img src="/static/luch_app/img/gallery_item_1.jpg">
+                <img src="/static/luch_app/img/gallery_item_2.jpg">
+                <img src="/static/luch_app/img/gallery_item_3.jpg">
+            </div>
+            <button class="prev tinting-button icon-button scaling-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path
+                        d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 278.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                </svg>
+            </button>
+            <button class="next tinting-button icon-button scaling-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                    <path
+                        d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
+                </svg>
+            </button>
+        </section>
+        <div class="order-sheet-container">
+            <div class="order-sheet-sticking-area">
+                <section id="order-sheet" class="card polar-mouse-tracker">
+                    <div class="order-now-title">
+                        ЗАКАЖИТЕ СЕЙЧАС!
+                    </div>
+                    <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 70 1440 100"
+                        preserveAspectRatio="none">
+                        <path fill-opacity="1"
+                            d="M0,160L80,154.7C160,149,320,139,480,122.7C640,107,800,85,960,85.3C1120,85,1280,107,1360,117.3L1440,128L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z">
+                        </path>
+                    </svg>
+                    <form action="{% url 'home' %}" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        {% comment %} <input name="email" type="email" placeholder="Эл. почта" inputmode="email" required>
+                        <input name="phone" type="tel" placeholder="Телефон" inputmode="tel" required>
+                        <input name="firstname" type="text" placeholder="Имя" inputmode="latin-name" required>
+                        <input name="lastname" type="text" placeholder="Фамилия" inputmode="latin-name" required> {% endcomment %}
+                        После отправления формы наши менеджеры свяжутся с вами, чтобы уточнить детали заказа.
+                        <p>
+                            <input class="color-fill-button scaling-button" type="submit"
+                            onclick="mainNs.showModalPopup(document.getElementById('make-order-popup'))"
+                            value="ЗАКАЗАТЬ">
+                        </p>
+                    </form>
+                </section>
+            </div>
+            <section id="general-info" class="staggered-grid avoid-order-sheet">
+                <div>
+                    <div class="card fly-in-from-left">
+                        <h2>Мы продаем лучшие овощи в России</h2>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati veniam totam voluptatum
+                        facilis, corrupti autem. Rerum natus facilis libero aspernatur ea soluta velit ipsa
+                        accusamus
+                        excepturi. Magni eum maxime doloribus.
+                    </div>
+                    <div class="card fly-in-from-left">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati veniam totam voluptatum
+                        facilis, corrupti autem. Rerum natus facilis libero aspernatur ea soluta velit ipsa
+                        accusamus
+                        excepturi. Magni eum maxime doloribus. Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit.
+                        Obcaecati veniam totam voluptatum
+                        facilis, corrupti autem. Rerum natus facilis libero aspernatur ea soluta velit ipsa
+                        accusamus
+                        excepturi. Magni eum maxime doloribus.
+                    </div>
+                </div>
+                <div>
+                    <div class="card fly-in-from-left">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati veniam totam voluptatum
+                        facilis, corrupti autem. Rerum natus facilis libero aspernatur ea soluta velit ipsa
+                        accusamus
+                        excepturi. Magni eum maxime doloribus. Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit.
+                        Obcaecati veniam totam voluptatum
+                        facilis, corrupti autem. Rerum natus facilis libero aspernatur ea soluta velit ipsa
+                        accusamus
+                        excepturi. Magni eum maxime doloribus. Lorem ipsum dolor sit amet consectetur adipisicing
+                        elit. Obcaecati veniam totam voluptatum
+                        facilis, corrupti autem. Rerum natus facilis libero aspernatur ea soluta velit ipsa
+                        accusamus Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati veniam totam
+                        voluptatum
+                        facilis, corrupti autem. Rerum natus facilis libero aspernatur ea soluta velit ipsa
+                        accusamus
+                    </div>
+                </div>
+            </section>
+            <section id="contact-us">
+                <svg height="100px" class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
+                    preserveAspectRatio="none">
+                    <path fill-opacity="1"
+                        d="M0,224L48,202.7C96,181,192,139,288,117.3C384,96,480,96,576,133.3C672,171,768,245,864,272C960,299,1056,277,1152,272C1248,267,1344,277,1392,282.7L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+                    </path>
+                </svg>
+                <div class="vw-bar avoid-order-sheet elevated1">
+                    <h2 class="fly-in-from-left">Как с нами связаться?</h2>
+                    <p class="fly-in-from-left">
+                        Телефон: <a class="highlight-button" href="tel:+79123455544">+7 (912) 345-67-89</a>
+                        <br>
+                        Электронная почта: <a class="highlight-button"
+                            href="mailto:luch-public@luch.ru">luch-public@luch.ru</a>
+                    </p>
+                    <div id="contact-us-map-wrapper" class="fly-in-from-left">
+                        <div id="contact-us-map"></div>
+                        <p class="hint-text">Нажмите дважды, чтобы включить перетаскивание</p>
+                    </div>
+                </div>
+            </section>
+            <section id="vegetables-showcase" class="avoid-order-sheet">
+                <div id="vegetables-item-onion" class="card vegetables-item fly-in-from-left">
+                    <img src="/static/luch_app/img/product_item_onion_0.png" alt="Картинка лука">
+                    <div class="waves-group">
+                        <svg class="wave" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 300 126" shape-rendering="geometricPrecision"
+                            text-rendering="geometricPrecision">
+                            <path
+                                d="M-0.000001,251.302957c0,0,0,9.231059,0-23.084339c33.664566,0,66.133778,3.276324,112.985211-11.139501s80.269936-43.575108,117.292397-36.039563s20.968473,29.814548,69.722392,62.866961c0,14.642915,0,7.550677,0,7.550677l-300-.154235Z"
+                                transform="translate(-.327632-124.32006)" fill="rgba(251,207,55,0.5)"
+                                stroke-width="0" />
+                        </svg>
+                        <svg class="wave" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 300 126" shape-rendering="geometricPrecision"
+                            text-rendering="geometricPrecision">
+                            <defs>
+                                <linearGradient id="eqOG2x0KU162-fill" x1="0.548137" y1="-0.000102" x2="0.548137"
+                                    y2="1.000611" spreadMethod="pad" gradientUnits="objectBoundingBox"
+                                    gradientTransform="translate(0 0)">
+                                    <stop id="eqOG2x0KU162-fill-0" offset="0%" stop-color="#efab47" />
+                                    <stop id="eqOG2x0KU162-fill-1" offset="100%" stop-color="#ef8358" />
+                                </linearGradient>
+                            </defs>
+                            <path
+                                d="M-0.000001,251.302957c0,0,0-93.684602,0-126c33.664566,0,61.535347,53.634105,71.633909,80.900222c7.891157,21.306123,38.902971,45.306787,60.101357,43.676142c19.692196-1.514784,56.253577-18.290843,83.99258-21.278121c32.820326-3.534497,57.360405,6.815209,84.272154,15.305315c0,14.642915,0,7.550677,0,7.550677l-300-.154235Z"
+                                transform="translate(.000001-125.302957)" fill="url(#eqOG2x0KU162-fill)"
+                                stroke-width="0" />
+                        </svg>
+                    </div>
+                    <div class="vegetables-description">
+                        <p class="vegetables-info">Крутой лук. Добавляйте этот лук с его невероятными
+                            нотками в любое сытное блюдо. Применение представленного лука сделает кулинарные
+                            шедевры
+                            изысканными. Данный лук решает любую проблему за считанные миллисекунд.</p>
+                        <p class="vegetables-price">
+                            <b>46 руб</b><span class="hint-text"> / 1 кг</span>
+                        </p>
+                    </div>
+                </div>
+                <div id="vegetables-item-beetroot" class="card vegetables-item fly-in-from-left">
+                    <img src="/static/luch_app/img/product_item_beetroot_0.png" alt="Картинка свеклы">
+                    <div class="waves-group">
+                        <svg class="wave" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 300 126" shape-rendering="geometricPrecision"
+                            text-rendering="geometricPrecision">
+                            <path
+                                d="M0.327632,250.32006c33.664566,0,114.383751-11.09368,144.608972-33.546702s80.473931-16.292834,111.977248-48.072495s24.180176,46.633198,43.086147,67.266949c0,14.642915,0,15.48938,0,15.48938"
+                                transform="translate(-.327632-124.32006)" fill="rgba(129, 241, 94, 0.5)"
+                                stroke-width="0" />
+                        </svg>
+                        <svg class="wave" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 300 210" shape-rendering="geometricPrecision"
+                            text-rendering="geometricPrecision">
+                            <defs>
+                                <linearGradient id="eSAhmZTarsv2-fill" x1="0.5" y1="0" x2="0.5" y2="1"
+                                    spreadMethod="pad" gradientUnits="objectBoundingBox"
+                                    gradientTransform="translate(0 0)">
+                                    <stop id="eSAhmZTarsv2-fill-0" offset="0%" stop-color="#e341a6" />
+                                    <stop id="eSAhmZTarsv2-fill-1" offset="100%" stop-color="#d772f3" />
+                                </linearGradient>
+                            </defs>
+                            <path
+                                d="M-0.50432,251.375002c0,0,0-36.870254,0-69.185652C17.139,138.173973,9.481569,70.714313,52.5019,100.141572s66.582312,124.839678,122.057485,137.400908s78.169561-65.323935,124.936295-41.708643c0,27.233267,0,55.541165,0,55.541165h-300Z"
+                                transform="translate(.50432-41.375002)" fill="url(#eSAhmZTarsv2-fill)"
+                                stroke-width="0" />
+                        </svg>
+                    </div>
+                    <div class="vegetables-description">
+                        <p class="vegetables-info">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                            Exercitationem, rem. Ipsam sunt ipsum quaerat unde iusto quidem nam, aliquid quae quia
+                            perspiciatis earum!</p>
+                        <p class="vegetables-price">
+                            <b>55 руб</b><span class="hint-text"> / 1 кг</span>
+                        </p>
+                    </div>
+                </div>
+                <div id="vegetables-item-potato" class="card vegetables-item fly-in-from-left">
+                    <img src="/static/luch_app/img/product_item_potato_0.png" alt="Картинка картофеля">
+                    <div class="waves-group">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 300 126" shape-rendering="geometricPrecision"
+                            text-rendering="geometricPrecision">
+                            <path
+                                d="M0.327632,250.32006c0,0-.327633-26.756754,0-26.756754c6.068184-50.388662,67.602489-90.513316,91.663689-71.740292s37.546049,83.28877,68.746287,53.939394s49.392376,38.826991,139.590024,38.882982c.000005,0,0,5.67467,0,5.67467h-300Z"
+                                transform="translate(-.327632-124.32006)" fill="#F4E79B80" stroke-width="0" />
+                        </svg>
+                        <svg class="wave" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 300 210" shape-rendering="geometricPrecision"
+                            text-rendering="geometricPrecision">
+                            <defs>
+                                <linearGradient id="eFwjQABap872-fill" x1="0.5" y1="0" x2="0.5" y2="1"
+                                    spreadMethod="pad" gradientUnits="objectBoundingBox"
+                                    gradientTransform="translate(0 0)">
+                                    <stop id="eFwjQABap872-fill-0" offset="0%" stop-color="#b16f28" />
+                                    <stop id="eFwjQABap872-fill-1" offset="100%" stop-color="#ecb755" />
+                                </linearGradient>
+                            </defs>
+                            <path
+                                d="M-1.706119,250.974402c0,0,0-5.309368,0-5.309368c4.591647-19.171085,56.26897,16.534382,80.304934-13.109974s50.462704-10.841822,76.113885-6.810189s39.874063-109.232238,77.222745-107.09464s59.253457,57.329698,66.358436,83.749349c0,27.233267,0,48.574822,0,48.574822h-300Z"
+                                transform="translate(1.706119-40.974402)" fill="url(#eFwjQABap872-fill)"
+                                stroke-width="0" />
+                        </svg>
+                    </div>
+                    <div class="vegetables-description">
+                        <p class="vegetables-info">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit laborum ad sequi. Saepe
+                            maiores illum vitae in laudantium nostrum? Excepturi labore nihil sed vero assumenda vel
+                            numquam neque pariatur veritatis voluptates?
+                        </p>
+                        <p class="vegetables-price">
+                            <b>44</b><span class="hint-text"> / 1 кг</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="official-documents">
+                <svg xmlns="http://www.w3.org/2000/svg" class="wave" viewBox="0 50 1440 260" preserveAspectRatio="none">
+                    <path fill-opacity="1"
+                        d="M0,224L34.3,234.7C68.6,245,137,267,206,272C274.3,277,343,267,411,272C480,277,549,299,617,304C685.7,309,754,299,823,272C891.4,245,960,203,1029,181.3C1097.1,160,1166,160,1234,144C1302.9,128,1371,96,1406,80L1440,64L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+                    </path>
+                </svg>
+                <div class="vw-bar avoid-order-sheet elevated1">
+                    <div class="pleasant-text">
+                        <h2 class="fly-in-from-right">Оффициальные документы</h2>
+                        <ul>
+                            <li class="fly-in-from-left">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path
+                                            d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z" />
+                                    </svg>
+                                    <span class="drag-solid">Утсав</span>
+                                </a>
+                            </li>
+                            <li class="fly-in-from-left">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path
+                                            d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z" />
+                                    </svg>
+                                    <span class="drag-solid">Лицензия на овощи</span>
+                                </a>
+                            </li>
+                            <li class="fly-in-from-left">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path
+                                            d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z" />
+                                    </svg>
+                                    <span class="drag-solid">Ещё лицензия на овощи
+                                </a>
+                            </li>
+                            <li class="fly-in-from-left">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path
+                                            d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z" />
+                                    </svg>
+                                    <span class="drag-solid">А о существовании требования этой лицензии мы долго не
+                                        знали до того, пока нам
+                                        как-то раз сильно не прилетело за это</span>
+                                </a>
+                            </li>
+                            <li class="fly-in-from-left">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path
+                                            d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z" />
+                                    </svg>
+                                    <span class="drag-solid">Шаблон договора купли-продажи</span>
+                                </a>
+                            </li>
+                            <li class="fly-in-from-left">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path
+                                            d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z" />
+                                    </svg>
+                                    <span class="drag-solid">Свидетельство о регистрации ООО</span>
+                                </a>
+                            </li>
+                            <li class="fly-in-from-left">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path
+                                            d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z" />
+                                    </svg>
+                                    <span class="drag-solid">Свидетельство о регистрации в налоговой службе</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer>
+            <div class="footer-bottom-info">2023 | Вологодская область</div>
+            <h1>ООО "ЛУЧ"</h1>
+            <h3>Овощи — это
+                <div class="potato-words">
+                    <span>счастье</span>
+                    <span>добро</span>
+                    <span>любовь</span>
+                    <span>жизнь</span>
+                    <span>радость</span>
+                    <span>эмоции</span>
+                    <span>наслаждение</span>
+                </div>
+                <br>
+                Неповторимый и везде подходящий, понятный вкус. Мы делаем всё ради наших овозей, чтобы доставлять
+                вам
+                их и удовольствие.
+            </h3>
+            <div class="footer-tint"></div>
+        </footer>
+    </main>
+    <section id="check-order-status-popup" class="modal-popup modal-popup-hide">
+        <div class="big-card popup-card">
+            <div id="popup-card-top-bar">
+                <button class="scaling-button tinting-button"
+                    onclick="mainNs.hideModalPopup(document.getElementById('check-order-status-popup'))">
+                    <svg width="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                        <path
+                            d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
+                    </svg>
+                </button>
+                <h1>Скажите, как найти ваш заказ</h1>
+            </div>
+            <form action="/order" method="POST">
+                <section>
+                    <label for="check-order-status-oreder-number">
+                        <h2>Через номер заказа</h2>
+                    </label>
+                    <p class="hint-text">Его можно найти в письме, которое вы получили при свершение заказа.</p>
+                    <input id="check-order-status-oreder-number" name="orederNumber" type="text" inputmode="latin"
+                        placeholder="Номер заказа">
+                </section>
+                <div id="check-order-status-divider" class="drag-solid">ИЛИ</div>
+                <section>
+                    <label for="check-order-status-email">
+                        <h2>Через электронную почту</h2>
+                    </label>
+                    <p class="hint-text">Ту, которую вы указывали при совершении заказа.</p>
+                    <input id="check-order-status-email" name="email" type="email" placeholder="Эл. почта">
+                </section>
+                <input class="color-fill-button scaling-button" type="submit" value="ОТСЛЕДИТЬ ЗАКАЗ">
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

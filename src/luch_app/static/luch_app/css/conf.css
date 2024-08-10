@@ -1,0 +1,22 @@
+:root {
+    --primary-color: #dc49d9; /* dc49d9 */
+    --primary-color-20: rgba(220, 73, 218, 0.1);
+    --primary-color-30: rgba(220, 73, 218, 0.3);
+    --primary-color-60: rgba(220, 73, 218, 0.6);
+    --secondary-color: rgb(78, 163, 238);
+    --slight-background: rgb(251, 251, 251);
+    --surface: rgb(214, 217, 222);
+    --surface-sat: rgb(158, 186, 234);
+    --surface-sat-shadow: rgba(141, 166, 210, 0.316);
+    
+    --frozen-glass-background: rgba(255, 255, 255, 0.579);
+    --modal-barrier-color: rgba(229, 229, 229, 0.813);
+
+    --order-sheet-margin: 500px;
+    --header-height-collapsed: 100px;
+    --header-height-expanded-0: 130px;
+    --header-height-expanded-1: 180px;
+    --header-height: 100px;
+
+    --pmt-transition-duration: 70ms; 
+}

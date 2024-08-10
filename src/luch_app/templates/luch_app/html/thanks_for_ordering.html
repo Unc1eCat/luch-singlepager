@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши менеджеры скоро свяжутся с Вами!</title><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&family=Comforter&family=Montserrat+Alternates:wght@200&family=Nunito&family=Source+Sans+Pro:wght@700&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/static/luch_app/css/common.css">
+    <link rel="stylesheet" href="/static/luch_app/css/pages/thanks_for_ordering.css">
+</head>
+
+<body>
+    <header class="header-height">
+        <a id="logo" href="{% url 'home' %}" title="Вернуться на главную страницу">
+            <img src="/static/luch_app/img/logo.png">
+            <h1>ЛУЧ</h1>
+        </a>
+    </header>
+    <main>
+        <div class="drag-solid" id="thanks-for-ordering">
+            <h1>СПАСИБО ЗА ЗАКАЗ</h1>
+            <h2>Наши менеджеры скоро свяжутся с вами, чтобы уточнить детали заказа.</h2>
+            <div class="card">
+                <span class="hint-text">НОМЕР ЗАКАЗА</span>
+                <h2 class="scaling-button drag-solid" onclick="navigator.clipboard.writeText('{{ view.kwargs.order_pk }}')"
+                title="Номер заказа">
+                    {{ view.kwargs.order_pk }}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path
+                            d="M64 464H288c8.8 0 16-7.2 16-16V384h48v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h64v48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16zM224 304H448c8.8 0 16-7.2 16-16V64c0-8.8-7.2-16-16-16H224c-8.8 0-16 7.2-16 16V288c0 8.8 7.2 16 16 16zm-64-16V64c0-35.3 28.7-64 64-64H448c35.3 0 64 28.7 64 64V288c0 35.3-28.7 64-64 64H224c-35.3 0-64-28.7-64-64z" />
+                    </svg>
+                </h2>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-bottom-info">2023 | Вологодская область</div>
+        <h1>ООО "ЛУЧ"</h1>
+        <h3>Овощи — это
+            <div class="potato-words">
+                <span>счастье</span>
+                <span>добро</span>
+                <span>любовь</span>
+                <span>жизнь</span>
+                <span>радость</span>
+                <span>эмоции</span>
+                <span>наслаждение</span>
+            </div>
+            <br>
+            Неповторимый и везде подходящий, понятный вкус. Мы делаем всё ради наших овозей, чтобы доставлять
+            вам
+            их и удовольствие.
+        </h3>
+        <div class="footer-tint"></div>
+    </footer>
+</body>
+
+</html>

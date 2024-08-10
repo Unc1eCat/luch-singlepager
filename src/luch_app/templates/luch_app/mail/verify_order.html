@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@700&family=Comforter&family=Montserrat+Alternates:wght@200&family=Nunito&family=Source+Sans+Pro:wght@700&display=swap"
+        rel="stylesheet">
+
+
+    <title>Подтвердите заказ</title>
+
+    <style>
+        :root {
+            --slight-background: rgb(251, 251, 251);
+            --primary-color: #dc49d9;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            position: relative;
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 400;
+            max-width: 800px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-block-start: 0.1em;
+            margin-block-end: 0.2em;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+        }
+
+
+        a:visited {
+            color: inherit;
+        }
+
+
+        .card {
+            position: absolute;
+            display: flow-root;
+            box-shadow: 0 3px 10px 3px #1112;
+            border-radius: 18px;
+            background-color: var(--slight-background);
+            margin: 60px 40px 10px;
+            /* padding: 40px 20px 30px; */
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            inset-inline: 0;
+            z-index: 10;
+            padding-inline: 40px;
+            margin: 10px;
+            height: 80px;
+
+            box-shadow: 0 0 5px 3px #0a0a0a3a;
+            background-color: rgba(255, 255, 255, 0.579);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+        }
+
+        #logo {
+            display: flex;
+            flex: 0 0;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+            height: 100%;
+            margin-right: 30px;
+        }
+
+        #logo>img {
+            object-fit: contain;
+            height: 100%;
+        }
+
+        #logo>h1 {
+            font-family: 'Montserrat Alternates', sans-serif;
+            font-size: 42px;
+        }
+
+        #colorful-panel {
+            display: flow-root;
+            background-color: var(--primary-color);
+            padding: 40px 10px 0;
+            color: white;
+            border-top-right-radius: 18px;
+            border-top-left-radius: 18px;
+        }
+
+        #colorful-panel+.wave {
+            fill: var(--primary-color)
+        }
+
+        #main-message {
+            padding-inline: 20px;
+        }
+
+        .highlight {
+            background-color: #ddd;
+            padding: 10px 15px;
+            margin: 16px;
+            border-radius: 12px;
+        }
+
+        .wave {
+            line-height: 0;
+            display: block;
+            width: 100%;
+            margin-block: -2px;
+            /* Prevents from gaps of space between the wave and other elements */
+        }
+
+        a.highlight-button {
+            padding: 2px 4px;
+            border-radius: 6px;
+            transition-duration: 250ms;
+        }
+
+        a.highlight-button:hover {
+            color: inherit;
+            background-color: #22222217;
+            border-radius: 12px;
+            transition-duration: 500ms;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a id="logo" href="{% url 'home' %}">
+            <img src="/static/luch_app/img/logo.png">
+            <h1>ЛУЧ</h1>
+        </a>
+    </header>
+    <main class="card">
+        <div id="colorful-panel">
+            <h1>Подтвердите ваш заказ <b>#{{ order_pk }}</b></h1>
+        </div>
+        <svg class="wave" height=40 xmlns="http://www.w3.org/2000/svg" viewBox="0 58 1440 225"
+            preserveAspectRatio="none">
+            <path fill-opacity="1"
+                d="M0,64L20,69.3C40,75,80,85,120,122.7C160,160,200,224,240,224C280,224,320,160,360,144C400,128,440,160,480,181.3C520,203,560,213,600,208C640,203,680,181,720,154.7C760,128,800,96,840,117.3C880,139,920,213,960,250.7C1000,288,1040,288,1080,240C1120,192,1160,96,1200,74.7C1240,53,1280,107,1320,133.3C1360,160,1400,160,1420,160L1440,160L1440,0L1420,0C1400,0,1360,0,1320,0C1280,0,1240,0,1200,0C1160,0,1120,0,1080,0C1040,0,1000,0,960,0C920,0,880,0,840,0C800,0,760,0,720,0C680,0,640,0,600,0C560,0,520,0,480,0C440,0,400,0,360,0C320,0,280,0,240,0C200,0,160,0,120,0C80,0,40,0,20,0L0,0Z">
+            </path>
+        </svg>
+        <div class="highlight">
+            <b><a
+                    href="https://luchmarket.ru/verify_order?key=f89e99a0b821b00e3bb195f382fff021">https://luchmarket.ru/verify_order?key={{ base64_key }}</a></b>
+        </div>
+        <div id="main-message">
+            Перейдя по ссылке выше, вы подтвердите верность заказа, а также сможете просмотреть информацию о заказе.
+            Вскоре с вами свяжется наш менеджер, чтобы обсудить детали заказа. Желаем успешного сотрудничества, спасибо!
+        </div>
+        <div class="highlight">
+            <h2>Как с нами связаться </h2>
+            Телефон: <a class="highlight-button" href="tel:+79123455544">+7 (912) 345-67-89</a>
+            <br>
+            Электронная почта: <a class="highlight-button" href="mailto:luch-public@luch.ru">luch-public@luch.ru</a>
+        </div>
+    </main>
+</body>
+
+</html>

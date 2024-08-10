@@ -1,0 +1,213 @@
+a.highlight-button {
+    padding: 2px 4px;
+    border-radius: 6px;
+    transition-duration: 250ms;
+}
+
+a.highlight-button:hover {
+    color: inherit;
+    background-color: #22222217;
+    border-radius: 12px;
+    transition-duration: 500ms;
+}
+
+.staggered-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.staggered-grid>div {
+    flex: 1 1 30%;
+}
+
+.staggered-grid>div>* {
+    margin: 30px 10px;
+}
+
+@media (max-width: 700px) {
+    .staggered-grid {
+        display: block;
+    }
+}
+
+.card {
+    background-color: var(--slight-background);
+    border-radius: 14px;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.229);
+}
+
+.big-card {
+    background-color: var(--slight-background);
+    border-radius: 22px;
+    box-shadow: 1px 1px 16px 6px rgba(0, 0, 0, 0.344);
+}
+
+.hint-text {
+    color: #222b;
+    font-size: 16px;
+}
+
+.fly-in-from-left {
+    transform: translateX(-50%);
+    opacity: 0.0;
+    transition-property: all;
+    transition-delay: 100ms;
+    transition-duration: 600ms;
+}
+
+.fly-in-from-left-on {
+    transform: translateX(0);
+    opacity: 1.0;
+}
+
+.fly-in-from-right {
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    -moz-transform: translateX(50%);
+    -o-transform: translateX(50%);
+    transform: translateX(50%);
+    opacity: 0.0;
+    transition-property: all;
+    transition-delay: 100ms;
+    transition-duration: 600ms;
+}
+
+.fly-in-from-right-on {
+    transform: translateX(0);
+    opacity: 1.0;
+}
+
+.drag-solid {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.drag-solid:focus {
+    outline: none !important;
+}
+
+.snap-gallery {
+    --fade-width: 35px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #0002 calc(var(--fade-width) / 2), black var(--fade-width), black calc(100% - var(--fade-width)), #0002 calc(100% - var(--fade-width) / 2), transparent);
+    white-space: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--fade-width);
+    scroll-padding-right: var(--fade-width);
+    padding-inline: var(--fade-width);
+}
+
+.snap-gallery>* {
+    display: inline;
+    scroll-snap-align: start;
+}
+
+.snap-gallery::-webkit-scrollbar {
+    display: none;
+}
+
+.vw-bar {
+    background-color: var(--slight-background);
+    display: flow-root;
+}
+
+/* .vw-bar>div {
+    margin-inline: auto;
+    padding: 10px 30px 50px 30px;
+    max-width: 50rem;
+} */
+
+.tinting-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.tinting-button::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    transition: background-color 100ms;
+    border-radius: inherit;
+}
+
+.tinting-button:hover::after {
+    background-color: rgba(34, 34, 34, 0.123);
+}
+
+.tinting-button:active::after {
+    background-color: #fff1;
+}
+
+.icon-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.icon-button>svg {
+    height: 100%;
+    width: 100%;
+    fill: #000b;
+    /* display: block; */
+}
+
+.scaling-button {
+    transform: scale(1);
+    transition: color 100ms, background-color 100ms, transform 200ms;
+}
+
+.scaling-button:hover {
+    transform: scale(1.05);
+}
+
+.scaling-button:active {
+    transform: scale(0.9);
+}
+
+.color-fill-button {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+    color: #be3fbc;
+    font-weight: 600;
+    border: 2px solid #be3fbc;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 10px 8px;
+    transform: scale(1);
+    transition: color 100ms, background-color 100ms, transform 200ms;
+}
+
+.color-fill-button:hover {
+    color: white;
+    background-color: #be3fbc;
+}
+
+.pleasant-text {
+    margin-inline: auto;
+    max-width: 50rem;
+    padding-inline: 2rem;
+}
+
+.pleasant-text h1,
+.pleasant-text h2,
+.pleasant-text h3 {
+    text-align: center;
+}
+
+.elevated1 {
+    box-shadow: 1px 2px 8px 10px rgba(6, 6, 6, 0.4);
+}
+
+.elevated2 {
+    box-shadow: 1px 2px 5px 5px rgba(6, 6, 6, 0.4);
+}
